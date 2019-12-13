@@ -1,13 +1,10 @@
 package com.example.springcourses.controllers;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,11 +24,8 @@ import com.example.springcourses.services.CourseService;
 @RequestMapping("/courses")
 public class CourseController {
 
-	private final static Logger LOGGER = Logger.getLogger("com.examples.courses.controller.CourseController");
-	
 	private CourseService courseService;
 	
-	@Autowired
 	CourseController(CourseService courseService){
 		this.courseService = courseService;
 	}
@@ -43,7 +37,6 @@ public class CourseController {
 	
 	@GetMapping("/all")
 	public List<Course> getAllCourses() {
-		LOGGER.log(Level.INFO, "Entra al controller");
 		return courseService.getAllCourses();
 	}
 	
@@ -52,7 +45,7 @@ public class CourseController {
 		return courseService.getCourseById(id);
 	}
 	
-	@PostMapping("/")
+	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public String addCourse(@Valid @RequestBody Course course) {
 		courseService.addCourse(course);
