@@ -2,8 +2,6 @@ package com.example.springcourses.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,8 +14,6 @@ import com.example.springcourses.repositories.StudentRepository;
 @Service
 public class StudentServiceImpl implements StudentService{
 
-private final static Logger LOGGER = Logger.getLogger("com.examples.courses.services.StudentService");
-	
 	private StudentRepository studentRepository;
 	
 	public StudentServiceImpl(StudentRepository studentRepository) {
@@ -37,7 +33,6 @@ private final static Logger LOGGER = Logger.getLogger("com.examples.courses.serv
 	}
 	
 	public List<Student> getAllStudents() {
-		LOGGER.log(Level.INFO, "Entra al service");
 		return studentRepository.findAll();
 	}
 	
