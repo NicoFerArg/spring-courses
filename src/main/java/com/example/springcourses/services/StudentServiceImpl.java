@@ -16,7 +16,9 @@ import com.example.springcourses.repositories.StudentRepository;
 @Service
 public class StudentServiceImpl implements StudentService{
 
-	private final static Logger LOGGER = Logger.getLogger("com.examples.courses.services.StudentService");
+	private static final String STUDENT_NOT_FOUND = "Student has not been found";
+
+	private static final Logger LOGGER = Logger.getLogger("com.examples.courses.services.StudentService");
 
 	private StudentRepository studentRepository;
 	
@@ -31,7 +33,7 @@ public class StudentServiceImpl implements StudentService{
 		if(pagedResult.hasContent()) {
 			return pagedResult.getContent();
 		}else {
-			return new ArrayList<Student>();
+			return new ArrayList<>();
 		}
 		
 	}
@@ -42,35 +44,35 @@ public class StudentServiceImpl implements StudentService{
 	
 	public Student getStudentById(Integer id){
 		return studentRepository.findById(id).orElseThrow(() -> {
-			LOGGER.log(Level.WARNING,"Student has not been found");
-			return new EntityNotFoundException("Student has not been found");
+			LOGGER.log(Level.WARNING,STUDENT_NOT_FOUND);
+			return new EntityNotFoundException(STUDENT_NOT_FOUND);
 		});
 	}
 	
 	public String addStudent(Student student) {
 		studentRepository.save(student);
-		LOGGER.log(Level.INFO,"Student added succesfully. The new student is "+student.getName());
-		return "Student added succesfully";
+		LOGGER.log(Level.INFO,"Student added successfully. The new student is "+student.getName());
+		return "Student added successfully";
 	}
 	
-	public String updateStudentById(Integer id, Student student) throws EntityNotFoundException{
+	public String updateStudentById(Integer id, Student student){
 		if(!studentRepository.findById(id).isPresent()) {
-			LOGGER.log(Level.WARNING,"Student has not been found");
-			throw new EntityNotFoundException("Student has not been found");
+			LOGGER.log(Level.WARNING,STUDENT_NOT_FOUND);
+			throw new EntityNotFoundException(STUDENT_NOT_FOUND);
 		}
 		student.setId(id);
-		LOGGER.log(Level.INFO,"Student updated succesfully. The new student is "+student.getName());
+		LOGGER.log(Level.INFO,"Student updated successfully. The new student is "+student.getName());
 		studentRepository.save(student);
-		return "Student updated succesfully";
+		return "Student updated successfully";
 	}
 	
-	public String deleteStudentById(Integer id) throws EntityNotFoundException{
+	public String deleteStudentById(Integer id){
 		if(!studentRepository.findById(id).isPresent()) {
-			LOGGER.log(Level.WARNING,"Student has not been found");
-			throw new EntityNotFoundException("Student has not been found");
+			LOGGER.log(Level.WARNING,STUDENT_NOT_FOUND);
+			throw new EntityNotFoundException(STUDENT_NOT_FOUND);
 		}
 		studentRepository.deleteById(id);
-		LOGGER.log(Level.INFO,"Student deleted succesfully.");
+		LOGGER.log(Level.INFO,"Student deleted successfully.");
 		return "Course has been deleted";
 	}
 	

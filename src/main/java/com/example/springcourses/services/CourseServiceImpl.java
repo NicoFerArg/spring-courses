@@ -17,7 +17,9 @@ import com.example.springcourses.repositories.CourseRepository;
 @Service
 public class CourseServiceImpl implements CourseService{
 
-	private final static Logger LOGGER = Logger.getLogger("com.examples.courses.services.CourseService");
+	private static final String COURSE_NOT_FOUND = "Course has not been found";
+
+	private static final Logger LOGGER = Logger.getLogger("com.examples.courses.services.CourseService");
 
 	private CourseRepository courseRepository;
 	
@@ -32,7 +34,7 @@ public class CourseServiceImpl implements CourseService{
 		if(pagedResult.hasContent()) {
 			return pagedResult.getContent();
 		}else {
-			return new ArrayList<Course>();
+			return new ArrayList<>();
 		}
 		
 	}
@@ -43,35 +45,35 @@ public class CourseServiceImpl implements CourseService{
 	
 	public Course getCourseById(Integer id){
 		return courseRepository.findById(id).orElseThrow(() -> {
-			LOGGER.log(Level.WARNING,"Course has not been found");
-			return new EntityNotFoundException("Course has not been found");
+			LOGGER.log(Level.WARNING,COURSE_NOT_FOUND);
+			return new EntityNotFoundException(COURSE_NOT_FOUND);
 		});
 	}
 	
 	public String addCourse(Course course) {
 		courseRepository.save(course);
-		LOGGER.log(Level.INFO,"Course added succesfully. New course is "+course.getName());
-		return "Course added succesfully";
+		LOGGER.log(Level.INFO,"Course added successfully. New course is "+course.getName());
+		return "Course added successfully";
 	}
 	
-	public String updateCourseById(Integer id, Course course) throws EntityNotFoundException{
+	public String updateCourseById(Integer id, Course course){
 		if(!courseRepository.findById(id).isPresent()) {
-			LOGGER.log(Level.WARNING, "Course has not been found");
-			throw new EntityNotFoundException("Course has not been found");
+			LOGGER.log(Level.WARNING, COURSE_NOT_FOUND);
+			throw new EntityNotFoundException(COURSE_NOT_FOUND);
 		}
 		course.setId(id);
 		courseRepository.save(course);
-		LOGGER.log(Level.INFO,"Course updated succesfully. New course is "+course.getName());
-		return "Course updated succesfully";
+		LOGGER.log(Level.INFO,"Course updated successfully. New course is "+course.getName());
+		return "Course updated successfully";
 	}
 	
-	public String deleteCourseById(Integer id) throws EntityNotFoundException{
+	public String deleteCourseById(Integer id){
 		if(!courseRepository.findById(id).isPresent()) {
-			LOGGER.log(Level.WARNING, "Course has not been found");
-			throw new EntityNotFoundException("Course has not been found");
+			LOGGER.log(Level.WARNING, COURSE_NOT_FOUND);
+			throw new EntityNotFoundException(COURSE_NOT_FOUND);
 		}
 		courseRepository.deleteById(id);
-		LOGGER.log(Level.INFO,"Course deleted succesfully.");
+		LOGGER.log(Level.INFO,"Course deleted successfully.");
 		return "Course has been deleted";
 	}
 	

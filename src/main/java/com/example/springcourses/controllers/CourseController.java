@@ -22,7 +22,7 @@ import com.example.springcourses.services.CourseService;
 
 @RestController
 @RequestMapping("/courses")
-public class CourseController {
+public class  CourseController {
 
 	private CourseService courseService;
 	
