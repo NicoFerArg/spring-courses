@@ -2,8 +2,16 @@ server:
   error:
     include-stacktrace: on_trace_param
 spring:
+  application:
+    name: courses-projects
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/course_db
     username: root
     password: password1
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+    preferIpAddress: true
