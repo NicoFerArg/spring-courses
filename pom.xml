@@ -61,7 +61,7 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.6</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-netflix-eureka-client</artifactId>
 			<version>2.2.0.RELEASE</version>
@@ -70,7 +70,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 			<version>2.2.0.RELEASE</version>
-		</dependency>
+		</dependency>-->
     </dependencies>
 
 	<build>

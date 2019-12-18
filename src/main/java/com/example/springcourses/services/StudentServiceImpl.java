@@ -18,7 +18,7 @@ public class StudentServiceImpl implements StudentService{
 
 	private static final String STUDENT_NOT_FOUND = "Student has not been found";
 
-	private static final Logger LOGGER = Logger.getLogger("com.examples.courses.services.StudentService");
+	private static final Logger LOGGER = Logger.getLogger("com.examples.springcourses.services.StudentService");
 
 	private StudentRepository studentRepository;
 	
