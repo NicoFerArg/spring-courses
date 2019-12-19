@@ -9,7 +9,7 @@ import com.example.springcourses.models.Student;
 public interface StudentService {
 
 	List<Student> getStudentPaginatorSort(Pageable paging);
-	List<Student> getAllStudents();
+	Iterable<Student> getAllStudents();
 	Student getStudentById(Integer id);
 	String addStudent(Student student);
 	String updateStudentById(Integer id, Student student);

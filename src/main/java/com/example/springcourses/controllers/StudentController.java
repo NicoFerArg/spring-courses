@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.springcourses.models.Student;
 import com.example.springcourses.services.StudentService;
 
+@Validated
 @RestController
 @RequestMapping("/students")
 public class StudentController {
@@ -36,7 +38,7 @@ public class StudentController {
 	}
 	
 	@GetMapping("/all")
-	public List<Student> getAllStudents() {
+	public Iterable<Student> getAllStudents() {
 		return studentService.getAllStudents();
 	}
 	
@@ -51,9 +53,9 @@ public class StudentController {
 		studentService.addStudent(student);
 		return "Student added. The new student is "+student.getName();
 	}
-	
+
 	@PutMapping("/{id}")
-	public String updateStudentById(@PathVariable Integer id, @RequestBody Student student) {
+	public String updateStudentById(@PathVariable Integer id, @Valid @RequestBody Student student) {
 		return studentService.updateStudentById(id, student);
 	}
 	

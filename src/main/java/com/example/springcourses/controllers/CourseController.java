@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,7 +37,7 @@ public class  CourseController {
 	}
 	
 	@GetMapping("/all")
-	public List<Course> getAllCourses() {
+	public Iterable<Course> getAllCourses() {
 		return courseService.getAllCourses();
 	}
 	

@@ -38,7 +38,7 @@ public class StudentServiceImpl implements StudentService{
 		
 	}
 	
-	public List<Student> getAllStudents() {
+	public Iterable<Student> getAllStudents() {
 		return studentRepository.findAll();
 	}
 	

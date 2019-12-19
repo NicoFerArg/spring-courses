@@ -1,9 +1,8 @@
 package com.example.springcourses.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.example.springcourses.models.Student;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface StudentRepository extends JpaRepository<Student, Integer> {
+public interface StudentRepository extends PagingAndSortingRepository<Student, Integer> {
 
 }

@@ -10,7 +10,7 @@ import com.example.springcourses.models.Course;
 public interface CourseService {
 	
 	public List<Course> getCoursePaginatorSort(Pageable paging);
-	public List<Course> getAllCourses();
+	public Iterable<Course> getAllCourses();
 	public Course getCourseById(Integer id);
 	public String addCourse(Course course);
 	public String updateCourseById(Integer id, Course course);

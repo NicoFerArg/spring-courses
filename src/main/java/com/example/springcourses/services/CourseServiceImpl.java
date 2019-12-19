@@ -39,7 +39,7 @@ public class CourseServiceImpl implements CourseService{
 		
 	}
 
-	public List<Course> getAllCourses() {
+	public Iterable<Course> getAllCourses() {
 		return courseRepository.findAll();
 	}
 	
